@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create, :index, :show]
     post 'orders/confirm' => 'orsers#confirm'
     
-    resources :addresses, only: [:index, :edit. :create, :update, :destroy]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
   
   #管理者側ルーティング
