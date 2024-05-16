@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2024_05_16_054625) do
     t.text "introduction", null: false
     t.integer "price", null: false
     t.boolean "is_active", default: true, null: false
-　end
+  end
 
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
