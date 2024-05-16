@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2024_05_16_055352) do
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
-
+  
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
