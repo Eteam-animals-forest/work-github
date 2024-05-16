@@ -44,7 +44,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.created_at :datetime, default: now
       t.update_at :datetime, default: now
 
-      t.timestamps null: false
+      t.timestamps
     end
 
     add_index :users, :email,                unique: true
