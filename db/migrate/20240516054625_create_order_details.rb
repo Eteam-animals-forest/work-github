@@ -7,7 +7,7 @@ class CreateOrderDetails < ActiveRecord::Migration[6.1]
       t.integer :amount, null: false
       t.integer :making_status, null: false, default: 0
 
-      t.timestamps null: false, default: now
+      t.timestamps null: false  #time.nowの可能性あり
     end
   end
 end

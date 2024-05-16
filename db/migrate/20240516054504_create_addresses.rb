@@ -6,7 +6,7 @@ class CreateAddresses < ActiveRecord::Migration[6.1]
       t.string  :address, null: false
       t.string  :name, null: false
       
-      t.timestamps null: false, default: now
+      t.timestamps null: false    #time.nowの可能性あり
     end
   end
 end
