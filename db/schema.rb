@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2024_05_16_054625) do
     t.integer "amount", null: false
     t.integer "making_status", default: 0, null: false
   end
-  
+
   create_table "items", force: :cascade do |t|
     t.integer "genre_id", null: false
     t.string "name", null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2024_05_16_054625) do
     t.integer "price", null: false
     t.boolean "is_active", default: true, null: false
 　end
-  
+
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
