@@ -9,10 +9,10 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-
+  
+  root to: "public/homes#top"
   #顧客側ルーティング
   scope module: :public do
-    root to: "public/homes#top"
     get 'about' => 'homes#about'
     get 'customers/my_page' => 'customers#show'
     get 'customers/information/edit' => 'customers#edit'
