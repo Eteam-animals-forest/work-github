@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
-  devise_for :users
   
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-    sessions: "admin/sessions"
-  }
-
+  namespace :public do
+    resources :homes
+  end
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+
+  devise_for :admins, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
   
   root to: "public/homes#top"
+  
   #顧客側ルーティング
-  scope module: :public do
+  namespace :public do
     get 'about' => 'homes#about'
     get 'customers/my_page' => 'customers#show'
     get 'customers/information/edit' => 'customers#edit'
@@ -34,6 +37,9 @@ Rails.application.routes.draw do
   
   #管理者側ルーティング
   namespace :admin do
+    devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+      sessions: "admin/sessions"
+    }
     root to: "homes#top"
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
