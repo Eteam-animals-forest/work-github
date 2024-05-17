@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+
+  devise_for :admins, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
 
@@ -10,28 +10,30 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  root to: "public/homes#top"
+
   #顧客側ルーティング
-  scope module: :public do
-    root to: "public/homes#top"
+  namespace :public do
+
     get 'about' => 'homes#about'
     get 'customers/my_page' => 'customers#show'
     get 'customers/information/edit' => 'customers#edit'
     patch 'customers/information' => 'customers#update'
     get 'customers/unsubscribe' => 'customers#unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw'
-    
+
     resources :items, only: [:index, :show]
-    
+
     resources :cart_items, only: [:index, :update, :destroy, :create]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: "cart_items_destroy_all"
-    
+
     get 'orders/thanks' => 'orders#thanks'
     resources :orders, only: [:new, :create, :index, :show]
     post 'orders/confirm' => 'orders#confirm'
-    
+
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
-  
+
   #管理者側ルーティング
   namespace :admin do
     root to: "homes#top"
