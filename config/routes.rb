@@ -1,29 +1,21 @@
 Rails.application.routes.draw do
-  
+
   namespace :public do
     resources :homes
   end
   devise_for :users
 
-  devise_for :admins, skip: [:registrations, :passwords] ,controllers: {
-    sessions: "admin/sessions"
-  }
-
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  
-  root to: "public/homes#top"
-  
-  #顧客側ルーティング
-  namespace :public do
 
   root to: "public/homes#top"
+
 
   #顧客側ルーティング
   namespace :public do

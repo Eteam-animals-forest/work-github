@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-5 col-xs-5">
-      <h2>商品新規登録</h2>
+      <h4>商品新規登録</h4>
     </div>
   </div>
   <div class="row justify-content-center">
@@ -18,7 +18,7 @@
         </tr>
         <tr>
           <th><%= f.label :商品説明 %></th>
-          <td><%= f.text_area :introduction, placeholder:"ここに説明文を記述します", class: "form-control" %></td>
+          <td><%= f.text_area :introduction, placeholder:"ここに説明文を記述します", class: "form-control", rows: 5 %></td>
         </tr>
         <tr>
           <th><%= f.label :ジャンル %></th>
@@ -26,7 +26,7 @@
         </tr>
         <tr>
           <th><%= f.label :税抜価格 %></th>
-          <td><%= f.text_field :price, placeholder:"1000", class: "form-control" %>円</td>
+          <td><%= f.text_field :price, placeholder:"1000" %>円</td>
         </tr>
         <tr>
           <th><%= f.label :is_active, "販売ステータス" %></th>

@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-5 col-xs-5">
-      <h2>商品編集</h2>
+      <h4>商品編集</h4>
     </div>
   </div>
   <div class="row justify-content-center">
-    <div class="col-sm-10 px-sm-0">
-      <%= form_with model: @item, url: admin_items_path, local: true do |f| %>
+    <div class="col-sm-10 px-sm-0 d-flex justify-content-center">
+      <%= form_with model: @item, url: admin_item_path(@item), local: true, method: :patch do |f| %>
       <table class="table table-borderless table-sm mx-auto">
         <tr>
           <th><%= f.label :商品画像 %></th>
@@ -14,11 +14,11 @@
         </tr>
         <tr>
           <th><%= f.label :商品名 %></th>
-          <td><%= f.text_field :name, placeholder:"商品名" %></td>
+          <td><%= f.text_field :name, placeholder:"商品名", class: "form-control" %></td>
         </tr>
         <tr>
           <th><%= f.label :商品説明 %></th>
-          <td><%= f.text_area :introduction, placeholder:"ここに説明文を記述します" %></td>
+          <td><%= f.text_area :introduction, placeholder:"ここに説明文を記述します", class: "form-control", rows: 5 %></td>
         </tr>
         <tr>
           <th><%= f.label :ジャンル %></th>
