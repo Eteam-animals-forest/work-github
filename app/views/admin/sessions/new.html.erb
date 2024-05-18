@@ -1,20 +1,20 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col">
-    　<h2 class="my-5">管理者ログイン</h2>
+    <div class="col-10 py-5 center-block">
+    　<h2 class="mb-4">管理者ログイン</h2>
         <table>
-　       <%= form_with model: @admin, url: admin_session_path do |f| %>
-　       
+　       <%= form_with model:resource, url: admin_session_path do |f| %>
+　       <%= alert %>
 　       <tr>
-           <td>メールアドレス</td>
-           <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+           <td><%= f.label :email, "メールアドレス" %></td>
+           <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %></td>
          </tr>
          <tr>
-           <td>パスワード</td>
+           <td><%= f.label :password, "パスワード" %></td>
            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
          </tr>
          <tr>
-           <td><%= f.submit "ログイン" ,class: "btn btn-primary" %></td>
+           <td><%= f.submit "ログイン", class: "btn btn-primary" %></td>
          </tr>
          <% end %>
         </table>
