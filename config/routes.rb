@@ -1,40 +1,44 @@
 Rails.application.routes.draw do
-  
+
   namespace :public do
     resources :homes
   end
+  devise_for :users
+
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-  
+
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  
+
   root to: "public/homes#top"
-  
+
+
   #顧客側ルーティング
   namespace :public do
+
     get 'about' => 'homes#about'
     get 'customers/my_page' => 'customers#show'
     get 'customers/information/edit' => 'customers#edit'
     patch 'customers/information' => 'customers#update'
     get 'customers/unsubscribe' => 'customers#unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw'
-    
+
     resources :items, only: [:index, :show]
-    
+
     resources :cart_items, only: [:index, :update, :destroy, :create]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: "cart_items_destroy_all"
-    
+
     get 'orders/thanks' => 'orders#thanks'
     resources :orders, only: [:new, :create, :index, :show]
     post 'orders/confirm' => 'orders#confirm'
-    
+
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
-  
+
   #管理者側ルーティング
   namespace :admin do
     devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
