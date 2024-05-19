@@ -12,13 +12,20 @@
             </tr>
           </thead>
           <% @customers.each do |customer| %>
+          <tbody>
             <tr>
               <td><%= customer.id %></td>
               <td><%= link_to customer.full_name, admin_customer_path(customer) %></td>
               <td><%= customer.email %></td>
               <td><%= customer.customer_status %></td>
             </tr>
+          </tbody>
           <% end %>
+          <tfoot>
+            <tr>
+              <%= paginate @customers %>
+            </tr>
+          </tfoot>
         </table>
     </div>
   </div>

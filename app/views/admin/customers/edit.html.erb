@@ -4,6 +4,7 @@
       <h4 class="my-5"><%= @customer.full_name %>さんの会員情報編集</h4>
       <table class="table table-borderless">
         <%= form_with model: [:admin, @customer] do |f| %>
+        
         <tr>
           <td>会員ID</td>
           <td><%= @customer.id %></td>
