@@ -1,4 +1,5 @@
 <div class="container">
+  
   <div class="row">
     <div class="col-sm-8 px-sm-0 offset-sm-1">
       <h4>商品一覧</h4>
@@ -7,8 +8,10 @@
       <%= link_to "＋", new_admin_item_path, class:"btn btn-success" %>
     </div>
   </div>
+  
   <div class="row">
     <table class="table table-borderless table-sm" >
+      
       <thead class="thead-light">
         <tr>
           <th style="width: 8%">商品ID</th>
@@ -18,6 +21,7 @@
           <th style="width: 17%">ステータス</th>
         </tr>
       </thead>
+      
       <tbody>
         <% @items.each do |item| %>
         <tr>
@@ -35,6 +39,7 @@
         </tr>
         <% end %>
       </tbody>
+      
       <tfoot>
         <tr>
           <th colspan="2"></th>
@@ -43,6 +48,8 @@
           </td>
         </tr>
       </tfoot>
+      
     </table>
   </div>
+  
 </div>

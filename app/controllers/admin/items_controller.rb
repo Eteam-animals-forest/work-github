@@ -13,8 +13,7 @@ class Admin::ItemsController < ApplicationController
     if @item.save
       redirect_to admin_item_path(@item), notice: "商品が作成されました"
     else
-      flash.now[:alert] = "商品の作成に失敗しました"
-      render :new
+      redirect_to new_admin_item_path, alert: "商品の作成に失敗しました"
     end
   end
 
@@ -31,8 +30,7 @@ class Admin::ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to admin_item_path(@item), notice: "商品が更新されました"
     else
-      flash.now[:alert] = "商品の更新に失敗しました"
-      render :edit
+      redirect_to edit_admin_item_path(@item), alert: "商品の更新に失敗しました"
     end
   end
 
