@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   namespace :public do
     resources :homes
   end
-  devise_for :users
 
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
