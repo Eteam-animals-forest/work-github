@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).per(10)
   end
 
   def new
@@ -14,7 +14,7 @@ class Admin::ItemsController < ApplicationController
       redirect_to admin_item_path(@item), notice: "商品が作成されました"
     else
       flash.now[:alert] = "商品の作成に失敗しました"
-      redirect_to new_admin_item_path
+      render :new
     end
   end
 
@@ -32,7 +32,7 @@ class Admin::ItemsController < ApplicationController
       redirect_to admin_item_path(@item), notice: "商品が更新されました"
     else
       flash.now[:alert] = "商品の更新に失敗しました"
-      redirect_to edit_admin_item_path(@item)
+      render :edit
     end
   end
 
