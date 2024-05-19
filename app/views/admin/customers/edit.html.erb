@@ -3,7 +3,16 @@
     <div class="col">
       <h4 class="my-5"><%= @customer.full_name %>さんの会員情報編集</h4>
       <%= form_with model: @customer, url: admin_customer_path(@customer), local: true, method: :patch do |f| %>
-       <%= render "admin/shared/error_messages", resource: @customer %>
+        <% if flash[:error].present? %>
+          <div id="error_explanation">
+            <h3><%= flash[:error].count %> 件のエラーがあります</h3>
+              <ul>
+               <% flash[:error].each do |message| %>
+                 <li><%= message %></li>
+               <% end %>
+              </ul>
+          </div>
+        <% end %>
         <table class="table table-borderless">
           <tr>
             <td>会員ID</td>
