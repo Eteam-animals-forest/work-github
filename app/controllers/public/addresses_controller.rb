@@ -4,7 +4,6 @@ class Public::AddressesController < ApplicationController
   def index
     @address = Address.new
     @addresses = current_customer.addresses
-    @customer = current_customer
   end
 
   def create
@@ -31,8 +30,8 @@ class Public::AddressesController < ApplicationController
   end
 
   def destroy
-    address = Address.find(params[:id])
-    if address.destroy
+    @address = Address.find(params[:id])
+    if @address.destroy
       redirect_to addresses_path, notice: "住所が削除されました"
     else
       redirect_to addresses_path, alert: "住所の削除に失敗しました"
