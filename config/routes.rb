@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
 
   #顧客側ルーティング
-  namespace :public do
+  scope module: :public do
 
     get 'about' => 'homes#about'
     get 'customers/my_page' => 'customers#show'

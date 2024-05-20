@@ -1,2 +1,37 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<div class='container'>
+  <div class = "row">
+    <div class ="col-lg-3 py-5">
+      ジャンル欄
+    </div>
+    <div class = 'col-lg-9 py-5'>
+      <div class="d-flex align-items-end">
+        <h3>商品一覧</h3>
+        <h6>(全<%= @items.count %>件)</h6>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 d-flex flex-wrap">
+          <% @items.each do |t| %>
+            <table class="table table-borderless col-lg-3">
+              <tr>
+                <td>
+                  <%= link_to item_path(t.id) do %>
+                    <%= image_tag t.get_image, size:'150x100' %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td><%= t.name %></td>
+              </tr>
+              <tr>
+                <!--数字にコンマをつけるために.to_s以降の記述をしている-->
+                <td>￥<%= t.price.to_s(:delimited, delimiter: ',') %></td>
+              </tr>
+            </table>
+          <% end %>
+          <div class="col center-block text-center"><%= paginate @items %></div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
