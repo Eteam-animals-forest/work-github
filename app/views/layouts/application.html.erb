@@ -13,6 +13,8 @@
   <body class="d-flex flex-column min-vh-100">
     <%= render 'layouts/header' %>
     <main class="flex-grow-1">
+      <div class="justify-content-center text-center"><%= notice %></div>
+      <div class="justify-content-center text-center"><%= alert %></div>
       <%= yield %>
     </main>
     <%= render 'layouts/footer' %>
