@@ -1,8 +1,8 @@
 <div class='container'>
   <div class = "row">
     <div class = 'col-10 py-5'>
-      <%= form_with model:@customer, url: public_customers_information_path(current_customer) do |f| %>
-        <%= render "public/shared/error_messages", resource: @customer %>
+      <%= form_with model:@customer, url: customers_information_path(current_customer) do |f| %>
+        <%= render "shared/error_messages", resource: @customer %>
 
         <table class="table table-borderless">
           <tr>
@@ -43,7 +43,7 @@
           </tr>
         </table>
         <%= f.submit "編集内容を保存", class: "btn btn-success px-5" %>
-        <%= link_to "退会する", public_customers_unsubscribe_path, class: "btn btn-danger ml-5" %>
+        <%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger ml-5" %>
       <% end %>
     </div>
   </div>
