@@ -1,6 +1,32 @@
-admin top
-              <li class="nav-item">
-                <%= link_to admin_genres_path, class: 'nav-link text-light' do %>
-                  <i class="fas fa-genres"></i> ジャンル一覧
+<div class='container'>
+  <div class = "row">
+    <div class = 'col-12 py-2'>
+      <h4>注文履歴一覧</h4>
+      <table class="table-borderless">
+        <thead>
+          <tr class="table-secondary">
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+          </tr>
+        </thead>
+        <% @orders.each do |t| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to admin_order_path(t.customer_id) do %>
+                  <%= t.created_at %>
                 <% end %>
-              </li>
+              </td>
+              <td><%= t.name %></td>
+              <td><%= amountの足し算？ %></td>
+              <td><%= t.status %></td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+      <%= paginate @orders %>
+    </div>
+  </div>
+</div>
