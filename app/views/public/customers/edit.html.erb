@@ -1,2 +1,50 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+<div class='container'>
+  <div class = "row">
+    <div class = 'col-10 py-5'>
+      <%= form_with model:@customer, url: public_customers_information_path(current_customer) do |f| %>
+        <%= render "public/shared/error_messages", resource: @customer %>
+
+        <table class="table table-borderless">
+          <tr>
+            <td>氏名</td>
+            <td><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder: "令和" %></td>
+            <td><%= f.text_field :first_name, autocomplete: "last_name", placeholder: "道子" %></td>
+          </tr>
+
+          <tr>
+            <td>フリガナ</span>
+            <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", placeholder: "レイワ" %></td>
+            <td><%= f.text_field :first_name_kana, autocomplete: "last_name_kana", placeholder: "ミチコ" %></td>
+          </tr>
+
+          <tr>
+            <td><%= f.label :email, "メールアドレス" %></td>
+            <td><%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %></td>
+            <td></td>
+          </tr>
+
+
+          <tr>
+            <td><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></td>
+            <td><%= f.text_field :postal_code, autocomplete: "postal_code", placeholder: "0000000" %></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td><%= f.label :address, "住所" %></td>
+            <td colspan="2"><%= f.text_field :address ,:size=>"70", autocomplete: "address", placeholder: "東京都渋谷区代々木神園町0-0" %></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td><%= f.label :telephone_number, "電話番号(ハイフンなし)" %></td>
+            <td><%= f.telephone_field :telephone_number, autocomplete: "telephone_number", placeholder: "0000000000" %></td>
+            <td></td>
+          </tr>
+        </table>
+        <%= f.submit "編集内容を保存", class: "btn btn-success px-5" %>
+        <%= link_to "退会する", public_customers_unsubscribe_path, class: "btn btn-danger ml-5" %>
+      <% end %>
+    </div>
+  </div>
+</div>
