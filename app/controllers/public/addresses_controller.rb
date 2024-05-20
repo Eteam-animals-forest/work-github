@@ -11,9 +11,9 @@ class Public::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     if @address.save
-      redirect_to public_addresses_path, notice: "住所が作成されました"
+      redirect_to addresses_path, notice: "住所が作成されました"
     else
-      redirect_to public_addresses_path, alert: "住所の作成に失敗しました"
+      redirect_to addresses_path, alert: "住所の作成に失敗しました"
     end
   end
 
@@ -24,18 +24,18 @@ class Public::AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
-      redirect_to public_addresses_path, notice: "住所が更新されました"
+      redirect_to addresses_path, notice: "住所が更新されました"
     else
-      redirect_to edit_public_address_path(@address), alert: "住所の更新に失敗しました"
+      redirect_to edit_address_path(@address), alert: "住所の更新に失敗しました"
     end
   end
 
   def destroy
     address = Address.find(params[:id])
     if address.destroy
-      redirect_to public_addresses_path, notice: "住所が削除されました"
+      redirect_to addresses_path, notice: "住所が削除されました"
     else
-      redirect_to public_addresses_path, alert: "住所の削除に失敗しました"
+      redirect_to addresses_path, alert: "住所の削除に失敗しました"
     end
   end
 
