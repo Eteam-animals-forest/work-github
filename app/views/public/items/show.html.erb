@@ -1,34 +1,18 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
-
 <div class='container'>
-  <div class = "row">
-    <div class ="col-lg-3 py-5">
+  <div class="row">
+    <div class="col-lg-3 py-5">
       ジャンル欄
     </div>
-    <div class = 'col-lg-9 py-5'>
-      <div class="d-flex align-items-end">
-        <h3>商品一覧</h3>
-        <h6>(全<%= @items.count %>件)</h6>
-      </div>
-      <div class="row">
-        <div class="col-lg-12 d-flex">
-            <% @items.each do |t| %>
-             
-                  <div class="col-lg-3">
-                    <%= link_to item_path(t.id) do %>
-                      <%= image_tag t.get_image, size:'150x100' %>
-                    <% end %>
-                  </div>
-                
-                  <div class="col-lg-3"><%= t.name %></div>
-               
-                  <!--数字にコンマをつけるために.to_s以降の記述をしている-->
-                  <div class="col-lg-3">￥<%= t.price.to_s(:delimited, delimiter: ',') %></div>
-            <% end %>
-          </div>
-        </div>
-      </div>
+    <div class='col-lg-4 py-5'>
+      <%= image_tag @item.get_image, size:'200x150' %>
+    </div>
+    <div class='col-lg-5 py-5'>
+      <h3><%= @item.name %></h3>
+      <p>￥<%= @item.price.to_s(:delimited, delimiter: ',') %></p>
+      <span>(税込)</span>
+      <div>個数選択</div>
+      <%= link_to "カートに入れる", cart_items_path %>　
+      <!--?formwith?-->
     </div>
   </div>
 </div>

@@ -20,7 +20,11 @@
                 </td>
               </tr>
               <tr>
-                <td><%= t.name %></td>
+                <td>
+                  <%= link_to item_path(t.id) do %>
+                    <%= t.name %>
+                  <% end %>
+                </td>
               </tr>
               <tr>
                 <!--数字にコンマをつけるために.to_s以降の記述をしている-->
@@ -28,7 +32,7 @@
               </tr>
             </table>
           <% end %>
-          <div class="col center-block text-center"><%= paginate @items %></div>
+          <div class="col-12 center-block text-center"><%= paginate @items %></div>
         </div>
         
       </div>
