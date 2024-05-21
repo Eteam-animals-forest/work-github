@@ -13,19 +13,19 @@
         </tr>
         <tr>
           <th>注文日</th>
-          <td></td>
+          <td><%= @order.created_at %></td>
         </tr>
         <tr>
           <th>配送先</th>
-          <td></td>
+          <td>〒<%= @order.postal_code.to_s.insert(3, "-") %> <%= @order.address %></td>
         </tr>
         <tr>
           <th></th>
-          <td></td>
+          <td><%= @order.name %></td>
         </tr>
         <tr>
           <th>支払方法</th>
-          <td></td>
+          <td><%= @order.payment_method %></td>
         </tr>
         <tr>
           <th>注文ステータス</th>
@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-9">
           <table class="table table-borderless">
-            <thead>
+            <thead class="table-secondary">
               <tr>
                 <th>商品名</th>
                 <th>単価(税込)</th>
@@ -46,16 +46,18 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
+            <% @order_details.each do |t| %>
+              <tbody>
+                <tr>
+                  <td><%= t.item_id.name %></td>
+                  <td><%= </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            <% end %>
           </table>
 
         </div>
