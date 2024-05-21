@@ -11,7 +11,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-      redirect_to public_customers_my_page_path(@customer), notice: "更新に成功しました."
+      redirect_to customers_my_page_path(@customer), notice: "更新に成功しました."
     else
       render "edit"
     end
