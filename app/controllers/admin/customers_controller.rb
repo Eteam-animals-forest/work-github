@@ -1,6 +1,8 @@
 class Admin::CustomersController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
-    @customers = Customer.all
+    @customers = Customer.page(params[:page])
   end
 
   def show
@@ -12,11 +14,11 @@ class Admin::CustomersController < ApplicationController
   end
 
   def update
-   @customer = Customer.find(params[:id])
+    @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-      redirect_to admin_customer_path(@customer)
+      redirect_to admin_customer_path(@customer), notice: '会員情報が更新されました。'
     else
-      render :edit
+      redirect_to edit_admin_customer_path, flash: { error: @customer.errors.full_messages }
     end
   end
 
