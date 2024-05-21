@@ -5,7 +5,7 @@
 
       <div class ="d-flex my-3">
         <h4 class="font-weight-bold col-2 align-items-end">登録情報</h4>
-        <%= link_to "編集する", public_customers_information_edit_path(current_customer), class: "btn btn btn-success btn-sm col-1" %>
+        <%= link_to "編集する", customers_information_edit_path(current_customer), class: "btn btn btn-success btn-sm col-1" %>
       </div>
 
       <table class="table-bordered">
@@ -37,11 +37,11 @@
 
       <div class ="d-flex my-3">
         <h4 class="font-weight-bold col-2 align-items-end">配送先</h4>
-        <%= link_to "一覧を見る", public_addresses_path(current_customer), class: "btn btn btn-primary btn-sm" %>
+        <%= link_to "一覧を見る", addresses_path(current_customer), class: "btn btn btn-primary btn-sm" %>
       </div>
       <div class ="d-flex my-3">
         <h4 class="font-weight-bold col-2 align-items-end">注文履歴</h4>
-        <%= link_to "一覧を見る", public_orders_path(current_customer), class: "btn btn btn-primary btn-sm" %>
+        <%= link_to "一覧を見る", orders_path(current_customer), class: "btn btn btn-primary btn-sm" %>
       </div>
     </div>
   </div>
