@@ -13,8 +13,11 @@
   <body class="d-flex flex-column min-vh-100">
     <%= render 'layouts/header' %>
     <main class="flex-grow-1">
-      <div class="justify-content-center text-center"><%= notice %></div>
-      <div class="justify-content-center text-center"><%= alert %></div>
+      <% if flash[:notice] %>
+        <div class="alert alert-success text-center"><%= flash[:notice] %></div>
+      <% elsif flash[:alert] %>
+        <div class="alert alert-danger text-center"><%= flash[:alert] %></div>
+      <% end %>
       <%= yield %>
     </main>
     <%= render 'layouts/footer' %>

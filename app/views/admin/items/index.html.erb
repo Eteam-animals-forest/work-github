@@ -1,4 +1,5 @@
 <div class="container">
+  
   <div class="row">
     <div class="col-sm-8 px-sm-0 offset-sm-1">
       <h4>商品一覧</h4>
@@ -7,17 +8,20 @@
       <%= link_to "＋", new_admin_item_path, class:"btn btn-success" %>
     </div>
   </div>
-  <div>
-    <table class="table">
-      <thead>
+  
+  <div class="row">
+    <table class="table table-borderless table-sm" >
+      
+      <thead class="thead-light">
         <tr>
-          <th>商品ID</th>
-          <th>商品名</th>
-          <th>税抜価格</th>
-          <th>ジャンル</th>
-          <th>ステータス</th>
+          <th style="width: 8%">商品ID</th>
+          <th style="width: 35%">商品名</th>
+          <th style="width: 15%">税抜価格</th>
+          <th style="width: 25%">ジャンル</th>
+          <th style="width: 17%">ステータス</th>
         </tr>
       </thead>
+      
       <tbody>
         <% @items.each do |item| %>
         <tr>
@@ -25,16 +29,27 @@
           <td><%= link_to item.name, admin_item_path(item) %></td>
           <td><%= item.price %></td>
           <td><%= item.genre.name %></td>
-          <td>
+          <th>
             <% if item.is_active %>
-            <p style="color: darkgreen;">販売中</p>
+            <p class="text-success">販売中</p>
             <% else %>
-            <p style="color: gray;">販売停止中</p>
+            <p class="text-black-50">販売停止中</p>
             <% end %>
-          </td>
+          </th>
         </tr>
         <% end %>
       </tbody>
+      
+      <tfoot>
+        <tr>
+          <th colspan="2"></th>
+          <td>
+            <%= paginate @items %>
+          </td>
+        </tr>
+      </tfoot>
+      
     </table>
   </div>
+  
 </div>
