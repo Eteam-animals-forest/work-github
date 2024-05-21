@@ -1,2 +1,23 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class='container'>
+  <div class="row">
+    <div class="col-lg-3 py-5">
+      ジャンル欄
+    </div>
+    <div class='col-lg-4 py-5'>
+      <%= image_tag @item.get_image, size:'350x250' %>
+    </div>
+    <div class='col-lg-5 py-5'>
+      <h3><%= @item.name %></h3>
+      <h5><%= @item.introduction %></h5>
+      <div class="py-5">
+        <span style="font-size:30px">￥<%= @item.price.to_s(:delimited, delimiter: ',') %></span>
+        <span>(税込)</span>
+      </div>
+      <%= form_with model: CartItem.new do |t| %>
+        <%= t.hidden_field :item_id, :value => @item.id %>
+        <%= t.select :amount, *[1..10], {include_blank: "個数選択"} %>
+        <%= t.submit "カートに入れる", class: "btn btn-success ml-5" %>
+      <% end %>
+    </div>
+  </div>
+</div>
