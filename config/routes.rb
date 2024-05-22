@@ -26,7 +26,12 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe' => 'customers#unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw'
 
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do
+      collection do
+        get :search
+        get :genre_search
+      end
+    end
 
     resources :cart_items, only: [:index, :update, :destroy, :create]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: "cart_items_destroy_all"
@@ -45,7 +50,7 @@ Rails.application.routes.draw do
     }
     root to: "homes#top"
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
-    resources :genres, only: [:index, :create, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update,]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:update, :show]
     resources :orders_details, only: [:update]
