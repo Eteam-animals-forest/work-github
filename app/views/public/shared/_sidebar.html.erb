@@ -9,7 +9,9 @@
   <% @genres.each do |genre| %>
     <tr>
       <th>
-        <%= link_to genre.name, items_path(genre_id: genre.id) %>
+        <%= link_to items_path(genre_id: genre.id), style: "color: inherit; text-decoration: none;" do %>
+          <h6><%= genre.name %></h6>
+        <% end %>
       </th>
     </tr>
   <% end %>
