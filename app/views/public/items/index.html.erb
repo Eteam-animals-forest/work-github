@@ -15,13 +15,13 @@
               <tr>
                 <td>
                   <%= link_to item_path(t.id) do %>
-                    <%= image_tag t.get_image, size:'150x100' %>
+                    <%= image_tag t.get_image, size:'180x130' %>
                   <% end %>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <%= link_to item_path(t.id) do %>
+                  <%= link_to item_path(t.id), class:"text-dark" do %>
                     <%= t.name %>
                   <% end %>
                 </td>
@@ -31,10 +31,10 @@
                 <td>￥<%= t.display_price.to_s(:delimited, delimiter: ',') %></td>
               </tr>
             </table>
+
           <% end %>
-          <div class="col-12 center-block text-center"><%= paginate @items %></div>
+          <div class="col-12 center-block"><%= paginate @items %></div>
         </div>
-        
       </div>
     </div>
   </div>
