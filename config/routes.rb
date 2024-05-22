@@ -40,9 +40,6 @@ Rails.application.routes.draw do
 
   #管理者側ルーティング
   namespace :admin do
-    devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-      sessions: "admin/sessions"
-    }
     root to: "homes#top"
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
