@@ -1,48 +1,43 @@
-<div class="container mt-5 mb-5">
+<div class="container ">
   <div class="row">
     <!-- サイドバー（ジャンル検索用のBOX） -->
-    <div class="col-md-3">
+    <div class="col-md-3 bg-light">
       <!-- サイドバーのコンテンツ -->
     </div>
     <div class="col-md-9">
       <div class="row">
         <div class="col-md-9">
-          <div class="position-relative" style="background-image: url('/assets/cake_shop.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 350px;">
+          <div class="position-relative" style="background-image: url('/assets/bakery-photo_1003615-10455.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; height: 350px;">
             <div class="text-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
-              <p>ようこそ、ながのCAKEへ！<br>
+              <p class="text-white">
+                ようこそ、ながのCAKEへ！<br>
                 このサイトは、ケーキ販売のECサイトになります。<br>
-                会員でない方も商品の閲覧はできますが、購入には会員登録が必要になります。</p>
+                会員でない方も商品の閲覧はできますが、購入には会員登録が必要になります。
+              </p>
             </div>
           </div>
         </div>
       </div>
       <div class="row"><%#　ここは後でeachとかをつかって商品の画像を並べるところ。 %>
-        <!--<div class="col-md-12">-->
-          <!-- 先着商品のリスト -->
-        <!--  <div class="row">-->
-            <!-- 商品1 -->
-        <!--    <div class="col-md-3">-->
-              <!-- 商品の画像と情報 -->
-        <!--    </div>-->
-            <!-- 商品2 -->
-        <!--    <div class="col-md-3">-->
-              <!-- 商品の画像と情報 -->
-        <!--    </div>-->
-            <!-- 商品3 -->
-        <!--    <div class="col-md-3">-->
-              <!-- 商品の画像と情報 -->
-        <!--    </div>-->
-            <!-- 商品4 -->
-        <!--    <div class="col-md-3">-->
-              <!-- 商品の画像と情報 -->
-        <!--    </div>-->
-        <!--  </div>-->
-          <!-- すべての商品を見るリンク -->
-        <!--  <div class="row">-->
-        <!--    <div class="col-md-12">-->
-        
-        <%#　ここは後程items/indexに飛ばす %>
-        <!--      <a href="#">すべての商品を見る＞</a>-->
+        <div class="col-md-12 mt-2">
+          <h4>新着商品</h4>
+          <div class="row">
+            <% @items.each do |t| %>
+              <div class="col-md-3">
+                <%= link_to item_path(t.id) do %>
+                  <%= image_tag t.get_image, size:'150x100' %>
+                <% end %></br>
+                <%= link_to item_path(t.id), class:"text-dark" do %>
+                  <%= t.name %>
+                <% end %></br>
+                <span>￥<%= t.display_price.to_s(:delimited, delimiter: ',') %></span>
+              </div>
+
+            <% end %>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-right mt-2">
+              <%= link_to "全ての商品を見る>", items_path, class:"text-dark" %>
             </div>
           </div>
         </div>
