@@ -1,69 +1,72 @@
-<h1>ショッピングカート</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="cart-container" style="padding: 0 15px;">
+        <div class="d-flex justify-content-between my-4"> <!-- mb-4で間に隙間を追加 -->
+          <h3>ショッピングカート</h3>
+          <%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, data: { confirm: '本当にカートを空にしますか？' }, class: 'btn btn-danger' %>
+        </div>
 
-<% if @cart_items.any? %>
-  <div class="cart-container" style="padding: 0 15px;">
-    <div class="d-flex justify-content-end mb-2">
-      <%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, data: { confirm: '本当にカートを空にしますか？' }, class: 'btn btn-danger' %>
-    </div>
+        <% if @cart_items.any? %>
+          <table class="table table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th style="width: 40%;">商品名</th>
+                <th style="width: 15%;">単価(税込)</th>
+                <th style="width: 15%;">数量</th>
+                <th style="width: 15%;">小計</th>
+                <th style="width: 15%;">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @cart_items.each do |cart_item| %>
+                <tr>
+                  <td>
+                    <% if cart_item.item.image.attached? %>
+                      <%= image_tag(cart_item.item.image.variant(resize: "50x50"), class: "img-thumbnail", style: "display: inline-block; vertical-align: middle; margin-right: 10px;") %>
+                    <% else %>
+                      <%= image_tag('no_image.jpg', size: "50x50", class: "img-thumbnail", style: "display: inline-block; vertical-align: middle; margin-right: 10px;") %>
+                    <% end %>
+                    <%= link_to cart_item.item.name, item_path(cart_item.item), style: "vertical-align: middle;" %>
+                  </td>
+                  <td class="text-center" style="vertical-align: middle;"><%= number_to_currency(cart_item.item.with_tax_price, unit: "¥", precision: 0) %></td>
+                  <td class="text-center" style="vertical-align: middle;">
+                    <%= form_with(model: cart_item, local: true, method: :patch, style: "display: inline-block;") do |f| %>
+                      <div class="input-group" style="display: flex; align-items: center;">
+                        <%= f.number_field :amount, value: cart_item.amount, min: 1, class: "form-control", style: "width: 50px; text-align: center;" %>
+                        <div class="input-group-append">
+                          <%= f.submit '変更', class: "btn btn-outline-secondary" %>
+                        </div>
+                      </div>
+                    <% end %>
+                  </td>
+                  <td class="text-center" style="vertical-align: middle;"><%= number_to_currency(cart_item.subtotal, unit: "¥", precision: 0) %></td>
+                  <td class="text-center" style="vertical-align: middle;">
+                    <%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
 
-    <table class="table table-bordered">
-      <thead class="thead-light">
-        <tr>
-          <th>商品名</th>
-          <th>単価(税込)</th>
-          <th>数量</th>
-          <th>小計</th>
-          <th>操作</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @cart_items.each do |cart_item| %>
-          <tr>
-            <td>
-              <% if cart_item.item.image.attached? %>
-                <%= image_tag(cart_item.item.image.variant(resize: "100x100"), class: "img-thumbnail") %>
-              <% else %>
-                <%= image_tag('no_image.jpg', size: "100x100", class: "img-thumbnail") %>
-              <% end %>
-              <%= link_to cart_item.item.name, item_path(cart_item.item) %>
-            </td>
-            <td><%= number_to_currency(cart_item.item.with_tax_price, unit: "¥", precision: 0) %></td>
-            <td>
-              <%= form_with(model: cart_item, local: true, method: :patch) do |f| %>
-                <div class="input-group">
-                  <%= f.number_field :amount, value: cart_item.amount, min: 1, class: "form-control" %>
-                  <div class="input-group-append">
-                    <%= f.submit '変更', class: "btn btn-outline-secondary" %>
-                  </div>
-                </div>
-              <% end %>
-            </td>
-            <td><%= number_to_currency(cart_item.subtotal, unit: "¥", precision: 0) %></td>
-            <td>
-              <%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
-            </td>
-          </tr>
+          <div class="d-flex justify-content-between align-items-center">
+            <%= link_to '買い物を続ける', items_path, class: 'btn btn-primary', style: 'margin-right: auto;' %>
+            <table class="table table-bordered" style="width: auto; margin-left: auto;">
+              <tr>
+                <th>合計金額</th>
+                <td><%= number_to_currency(@cart_items.sum { |cart_item| cart_item.subtotal }, unit: "¥", precision: 0) %></td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="text-center mt-4">
+            <%= link_to '情報入力に進む', new_order_path, class: 'btn btn-success' %>
+          </div>
+        <% else %>
+          <p>カートには何も入っていません</p>
         <% end %>
-      </tbody>
-    </table>
-
-    <div class="d-flex justify-content-end">
-      <table class="table table-bordered" style="width: auto;">
-        <tr>
-          <th>合計金額</th>
-          <td><%= number_to_currency(@cart_items.sum { |cart_item| cart_item.subtotal }, unit: "¥", precision: 0) %></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="text-center mt-4">
-      <%= link_to '情報入力に進む', new_order_path, class: 'btn btn-success' %>
+      </div>
     </div>
   </div>
-<% else %>
-  <p>カートには何も入っていません</p>
-<% end %>
-
-<div class="mt-3">
-  <%= link_to '買い物を続ける', items_path, class: 'btn btn-primary' %>
 </div>
+
