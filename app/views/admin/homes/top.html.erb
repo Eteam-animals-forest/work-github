@@ -21,7 +21,7 @@
               </td>
               <td><%= t.customer_id.full_name %></td>
               <!--配送先氏名じゃなくていいよね？-->
-              <td><%= t.amount_total %></td>
+              <td><%= t.subtotal_amount %></td>
               <!--合っているかは不明-->
               <td><%= t.status %></td>
             </tr>
@@ -30,5 +30,10 @@
       </table>
       <%= paginate @orders %>
     </div>
+    <li class="nav-item">
+                <%= link_to destroy_admin_session_path, class: 'nav-link text-light', method: :delete do %>
+                  <i class="fas fa-sign-out-alt"></i> ログアウト
+                <% end %>
+              </li>
   </div>
 </div>
