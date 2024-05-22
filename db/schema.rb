@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 2024_05_20_160100) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
@@ -83,8 +85,6 @@ ActiveRecord::Schema.define(version: 2024_05_20_160100) do
     t.string "address", null: false
     t.string "telephone_number", null: false
     t.boolean "is_active", default: true, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
