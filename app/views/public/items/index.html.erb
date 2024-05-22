@@ -28,7 +28,7 @@
               </tr>
               <tr>
                 <!--数字にコンマをつけるために.to_s以降の記述をしている-->
-                <td>￥<%= t.price.to_s(:delimited, delimiter: ',') %></td>
+                <td>￥<%= t.display_price.to_s(:delimited, delimiter: ',') %></td>
               </tr>
             </table>
           <% end %>

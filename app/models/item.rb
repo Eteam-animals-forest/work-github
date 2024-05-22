@@ -18,5 +18,8 @@ class Item < ApplicationRecord
       tax_rate = 0.1
       price * (1 + tax_rate)
    end
-  
+   
+   def display_price
+      with_tax_price.floor
+   end
 end
