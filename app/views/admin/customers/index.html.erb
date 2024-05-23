@@ -3,30 +3,28 @@
     <div class="col">
       <h4 class="my-5">会員一覧</h4>
         <table class="table">
-          <thead>
-            <tr>
-              <th>会員ID</th>
-              <th>氏名</th>
-              <th>メールアドレス</th>
-              <th>ステータス</th>
-            </tr>
-          </thead>
+            <thead>
+              <tr>
+                <th>会員ID</th>
+                <th>氏名</th>
+                <th>メールアドレス</th>
+                <th>ステータス</th>
+              </tr>
+            </thead>
           <% @customers.each do |customer| %>
-          <tbody>
-            <tr>
-              <td><%= customer.id %></td>
-              <td><%= link_to customer.full_name, admin_customer_path(customer) %></td>
-              <td><%= customer.email %></td>
-              <td><%= customer.customer_status %></td>
-            </tr>
-          </tbody>
+            <tbody>
+              <tr>
+                <td><%= customer.id %></td>
+                <td><%= link_to customer.full_name, admin_customer_path(customer) %></td>
+                <td><%= customer.email %></td>
+                <td><%= customer.customer_status %></td>
+              </tr>
+            </tbody>
           <% end %>
-          <tfoot>
-            <tr align="center" class="justify-content-center">
-              <td colspan="4"><%= paginate @customers %></td>
-            </tr>
-          </tfoot>
         </table>
+        <div class="row">
+          <div class="d-flex justify-content-center"><%= paginate @customers %></div>
+        </div>
     </div>
   </div>
 </div>

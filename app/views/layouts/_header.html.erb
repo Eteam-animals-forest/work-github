@@ -82,10 +82,10 @@
           </ul>
         </div>
         <div class="search-box">
-          <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="検索" aria-label="Search">
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">検索</button>
-          </form>
+          <%= form_tag(search_items_path, method: :get, class: "form-inline") do %>
+            <%= text_field_tag :content, params[:query], class: "form-control mr-sm-2", placeholder: "商品検索", aria: { label: "Search" } %>
+            <%= submit_tag "検索", class: "btn btn-outline-light my-2 my-sm-0" %>
+          <% end %>
         </div>
       </div>
     </div>
