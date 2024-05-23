@@ -1,4 +1,10 @@
 class Admin::OrdersController < ApplicationController
+  
+  def show
+    @order = Order.find(params[:id])
+    @order_details = OrderDetail.all
+  end
+  
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
@@ -6,10 +12,5 @@ class Admin::OrdersController < ApplicationController
     else
       redirect_to request.referer, alert: "ステータスを更新できませんでした"
     end
-  end
-
-  def show
-    @order = Order.find(params[:id])
-    @order_details = OrderDetail.all
   end
 end
