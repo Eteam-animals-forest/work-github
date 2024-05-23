@@ -8,6 +8,13 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    if params[:order][:address_type] == "new_address"
+      if @order.invalid? @addresses = current_customer.addresses.all
+        render :new
+        return
+      end
+    end
     if @order.payment_method == "credit_card"
         @order.payment_method = Order.payment_methods.key(0)
     else

@@ -1,3 +1,4 @@
+
 <div class="container mt-5">
     <div class="row">
       <h3>注文情報確認</h3>
@@ -75,8 +76,8 @@
         </table>
       </div>
 
-      <div class="row">
-        <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+      <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+        <div class="row">
            <%= f.hidden_field :customer_id %>
            <%= f.hidden_field :shipping_cost %>
            <%= f.hidden_field :total_payment %>
@@ -85,7 +86,9 @@
            <%= f.hidden_field :address %>
            <%= f.hidden_field :postal_code %>
            <%= f.hidden_field :status %>
+        </div>
+        <div class="d-flex justify-content-center mb-2">
            <%= f.submit "注文を確定する", class: "btn btn-success" %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 </div>
