@@ -1,18 +1,21 @@
 <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="my-4 ml-4">ジャンル編集</h3> 
+    </div>
+  </div>
+</div>
 
-<h2>ジャンル編集</h2>
-
-<div>
-    <%= form_with model: @genre, url: admin_genre_path, local: true do |f| %>
-      <div>
-        <div>
-          <%= f.label "ジャンル名" %>
-          <%= f.text_field :name %>
+<div class="container">
+  <div class="row justify-content-start">
+    <div class="col-md-6">
+      <%= form_with model: @genre, url: admin_genre_path(@genre), local: true do |f| %>
+        <div class="form-group d-flex align-items-center">
+          <%= f.label :name, "ジャンル名", class: "mr-3" %>
+          <%= f.text_field :name, class: "form-control mr-3", placeholder: "ジャンル名", style: "width: 200px;" %>
+          <%= f.submit "変更を保存", class: "btn btn-success" %>
         </div>
-        <div>
-          <%= f.submit "変更を保存" %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
