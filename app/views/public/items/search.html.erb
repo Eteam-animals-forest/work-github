@@ -1,0 +1,28 @@
+<div class='container'>
+  <div class="row">
+    <% if @items.any? %>
+      <div class='col-lg-9 py-5'>
+        <div class="d-flex align-items-end">
+          <h3>検索結果</h3>
+        </div>
+        <div class="row">
+          <% @items.each do |item| %>
+            <div class="col-lg-3">
+              <%= link_to item_path(item) do %>
+                <%= image_tag item.get_image, size: '150x100' %>
+              <% end %>
+              <div>
+                <%= link_to item_path(item) do %>
+                  <%= item.name %>
+                <% end %>
+              </div>
+              <div>￥<%= number_to_currency(item.with_tax_price, unit: '', precision: 0) %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% else %>
+      <p>該当する商品はありません。</p>
+    <% end %>
+  </div>
+</div>
