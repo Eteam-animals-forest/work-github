@@ -31,10 +31,11 @@
                 <td>￥<%= t.display_price.to_s(:delimited, delimiter: ',') %></td>
               </tr>
             </table>
-
           <% end %>
-          <div class="col-12 center-block"><%= paginate @items %></div>
         </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex justify-content-center"><%= paginate @items %></div>
       </div>
     </div>
   </div>
