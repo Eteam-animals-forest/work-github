@@ -1,83 +1,80 @@
 
 <div class="container mt-5">
-    <div class="row">
-      <h3>注文情報確認</h3>
+  <div class="row">
+    <h3>注文情報確認</h3>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead class="table-secondary">
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <% total = 0 %>
+        <% @cart_items.each do |cart_item| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= image_tag cart_item.item.image, size: "50x30" %>
+                <strong><%= cart_item.item.name %></strong>
+              </td>
+              <td><%= number_with_delimiter((cart_item.item.price*1.1).to_i) %></td>
+              <td><%= cart_item.amount %></td>
+              <td>
+                <% subtotal = ((cart_item.item.price*cart_item.amount)*1.1).to_i %>
+                <%= number_with_delimiter(subtotal) %>
+              </td>
+            </tr>
+          </tbody>
+          <% total += (cart_item.item.price*cart_item.amount)*1.1 %>
+        <% end %>
+      </table>
     </div>
 
-      <div class="row">
-        <div class="col-md-8">
-          <table class="table table-bordered">
-                    <thead class="table-secondary">
-                      <tr>
-                        <th>商品名</th>
-                        <th>単価(税込)</th>
-                        <th>数量</th>
-                        <th>小計</th>
-                      </tr>
-                    </thead>
-              <% total = 0 %>
-                <% @cart_items.each do |cart_item| %>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <%= image_tag cart_item.item.image, size: "60x40" %>
-                          <strong><%= cart_item.item.name %></strong>
-                        </td>
-                        <td><%= number_with_delimiter((cart_item.item.price*1.1).to_i) %></td>
-                        <td><%= cart_item.amount %></td>
-                        <td>
-                            <% subtotal = ((cart_item.item.price*cart_item.amount)*1.1).to_i %>
-                            <%= number_with_delimiter(subtotal) %>
-                        </td>
-                      </tr>
-                    </tbody>
-                  <% total += (cart_item.item.price*cart_item.amount)*1.1 %>
-                <% end %>
-          </table>
-        </div>
+    <div class="col-md-4">
+      <table class="table table-bordered">
+        <tr>
+          <td class="table-secondary">送料</td>
+          <td class="col-5">
+            <% @order.shipping_cost = 800 %>
+            <%= @order.shipping_cost %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-secondary">商品合計</td>
+          <td class="col-5"><%= number_with_delimiter(total.to_i) %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary">請求額</td>
+          <td class="col-5">
+            <% @order.total_payment = @order.shipping_cost + total.to_i %>
+            <%= number_with_delimiter(@order.total_payment) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-        <div class="col-md-4">
-          <table class="table-bordered">
-            <tr>
-              <td class="table-secondary">送料</td>
-              <td class="col-5">
-                <% @order.shipping_cost = 800 %>
-                <%= @order.shipping_cost %>
-              </td>
-            </tr>
-            <tr>
-              <td class="table-secondary">商品合計</td>
-              <td class="col-5"><%= number_with_delimiter(total.to_i) %></td>
-            </tr>
-            <tr>
-              <td class="table-secondary">請求額</td>
-              <td class="col-5">
-                  <% @order.total_payment = @order.shipping_cost + total.to_i %>
-                  <%= number_with_delimiter(@order.total_payment) %>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-
-      <div class="row">
-        <table class="table table-borderless">
-          <tr>
-            <td><strong>支払い方法</strong></td>
-            <td><%= @order.payment_method_i18n %></td>
-          </tr>
-          <tr>
-            <td><strong>お届け先</strong></td>
-            <td>
-              〒<%= @order.postal_code + "　" + @order.address %>
-            </td>
-          </tr>
-          <tr>
-          <td></td>
-          <td><%= @order.name %></td>
-          </tr>
-        </table>
-      </div>
+  <div class="row">
+    <table class="table table-borderless">
+      <tr>
+        <td><strong>支払い方法</strong></td>
+        <td><%= @order.payment_method_i18n %></td>
+      </tr>
+      <tr>
+        <td><strong>お届け先</strong></td>
+        <td>
+          〒<%= @order.postal_code + "　" + @order.address %>
+          <%= @order.name %>
+        </td>
+      </tr>
+    </table>
+  </div>
 
       <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
         <div class="row">
@@ -94,4 +91,5 @@
            <%= f.submit "注文を確定する", class: "btn btn-success" %>
         </div>
       <% end %>
+
 </div>
