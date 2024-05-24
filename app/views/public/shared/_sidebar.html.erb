@@ -1,19 +1,21 @@
-<table class="table table-bordered table-hover text-center">
-  
-  <tr>
-    <td>
-      <h6>ジャンル検索</h6>
-    </td>
-  </tr>
-  
-  <% @genres.each do |genre| %>
-    <tr>
-      <th>
-        <%= link_to items_path(genre_id: genre.id), style: "color: inherit; text-decoration: none;" do %>
-          <%= genre.name %>
-        <% end %>
-      </th>
+<div class="w-75">
+  <table class="table table-bordered table-hover text-center">
+
+    <tr style="background-color: #deb887;">
+      <td>
+        <i class="fa-solid fa-magnifying-glass"></i>ジャンル検索
+      </td>
     </tr>
-  <% end %>
-  
-</table>
+
+
+    <% @genres.each do |genre| %>
+      <tr onclick="window.location='<%= items_path(genre_id: genre.id) %>'" style="cursor: pointer;">
+        <th>
+          <%= genre.name %>
+        </th>
+      </tr>
+    <% end %>
+
+
+  </table>
+</div>
