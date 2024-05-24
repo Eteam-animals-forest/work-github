@@ -7,9 +7,8 @@
   </div>
   
   <div class="row mb-5">
-    <div>
       <%= form_with model: @address, local: true do |f| %>
-        <table>
+        <table class= "w-100">
           
           <tr>
             <th><%= f.label "郵便番号(ハイフンなし)" %></th>
@@ -29,13 +28,11 @@
           
         </table>
       <% end %>
-    </div>
   </div>
   
   
   <div class="row">
-    <div>
-      <table class="table table-bordered table-sm" >
+      <table class="table table-bordered table-sm w-10" >
         
         <thead class="thead-light">
           <tr>
@@ -52,8 +49,8 @@
             <td><%= address.postal_code %></td>
             <td><%= address.address %></td>
             <td><%= address.name %></td>
-            <td>
-              <%= link_to "編集する", edit_address_path(address), class: "btn btn-success" %>
+            <td class="d-flex justify-content-center">
+              <%= link_to "編集する", edit_address_path(address), class: "btn btn-success mr-4" %>
               <%= link_to "削除する", address_path(address), data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger", method: :delete %>
             </td>
           </tr>
@@ -61,7 +58,6 @@
         </tbody>
         
       </table>
-    </div>
   </div>
   
 </div>

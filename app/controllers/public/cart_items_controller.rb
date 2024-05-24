@@ -33,20 +33,26 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-    # 既にカートに同じ商品があるかを確認
-    if CartItem.exists?(item_id: params[:cart_item][:item_id], customer_id: current_customer.id)
-      cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id], customer_id: current_customer.id)
-      cart_item.amount += params[:cart_item][:amount].to_i
-      cart_item.save
+
+    item = Item.find(cart_item_params[:item_id])
+    unless item.is_active
+      flash[:alert] = 'この商品は現在購入できません。'
+       redirect_to item_path(item)
+       return
+    end
+      
+    @cart_item = current_customer.cart_items.find_by(item_id: cart_item_params[:item_id])
+    if @cart_item
+      @cart_item.amount += cart_item_params[:amount].to_i
+    else
+      @cart_item = current_customer.cart_items.new(cart_item_params)
+      @cart_item.amount = cart_item_params[:amount].to_i
+    end
+    if @cart_item.save
       redirect_to cart_items_path, notice: "商品がカートに追加されました."
     else
-      @cart_item = CartItem.new(cart_item_params)
-      @cart_item.customer = current_customer
-      if @cart_item.save
-        redirect_to cart_items_path, notice: "商品がカートに追加されました."
-      else
-        redirect_to cart_items_path, alert: "カートに商品を追加できませんでした."
-      end
+      flash[:alert] = 'カートに商品を追加できませんでした。'
+      redirect_to request.referer
     end
   end
 
