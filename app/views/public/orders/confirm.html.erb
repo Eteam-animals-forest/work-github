@@ -20,7 +20,7 @@
                     <tbody>
                       <tr>
                         <td>
-                          <%= image_tag cart_item.item.image, size: "100x80" %>
+                          <%= image_tag cart_item.item.image, size: "60x40" %>
                           <strong><%= cart_item.item.name %></strong>
                         </td>
                         <td><%= number_with_delimiter((cart_item.item.price*1.1).to_i) %></td>
@@ -70,8 +70,11 @@
             <td><strong>お届け先</strong></td>
             <td>
               〒<%= @order.postal_code + "　" + @order.address %>
-              <%= @order.name %>
             </td>
+          </tr>
+          <tr>
+          <td></td>
+          <td><%= @order.name %></td>
           </tr>
         </table>
       </div>
