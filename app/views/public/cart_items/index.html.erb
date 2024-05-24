@@ -29,7 +29,7 @@
                     <% end %>
                     <%= link_to cart_item.item.name, item_path(cart_item.item), style: "vertical-align: middle;" %>
                   </td>
-                  <td class="text-center" style="vertical-align: middle;"><%= number_to_currency(cart_item.item.with_tax_price, unit: "¥", precision: 0, format: "%u%n") %></td>
+                  <td class="text-center" style="vertical-align: middle;"><%= number_to_currency(cart_item.item.with_tax_price, unit: "", precision: 0, format: "%u%n") %></td>
                   <td class="text-center" style="vertical-align: middle;">
                     <%= form_with(model: cart_item, local: true, method: :patch, style: "display: inline-block;") do |f| %>
                       <div class="input-group" style="display: flex; align-items: center;">
@@ -41,7 +41,7 @@
                     <% end %>
                   </td>
                   <td class="text-center" style="vertical-align: middle;">
-                    <%= number_to_currency(cart_item.subtotal, unit: "¥", format: "%u%n", precision: 0) %>
+                    <%= number_to_currency(cart_item.subtotal, unit: "", format: "%u%n", precision: 0) %>
                   </td>
                   <td class="text-center" style="vertical-align: middle;">
                     <%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
@@ -56,7 +56,7 @@
             <table class="table table-bordered" style="width: auto; margin-left: auto;">
               <tr>
                 <th>合計金額</th>
-                <td><%= number_to_currency(@cart_items.sum { |cart_item| cart_item.subtotal }, unit: "¥", precision: 0, format: "%u%n") %></td>
+                <td><%= number_to_currency(@cart_items.sum { |cart_item| cart_item.subtotal }, unit: "", precision: 0, format: "%u%n") %></td>
               </tr>
             </table>
           </div>
