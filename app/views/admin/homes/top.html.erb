@@ -19,7 +19,7 @@
               <% end %>
             </td>
             <td class="px-3"><%= t.customer.full_name %></td>
-            <td class="px-3"><%= t.subtotal_amount %></td>
+            <td class="px-3"><%= t.order_details.group(:order_id).sum(:amount).values.first %></td>
             <td class="px-3"><%= t.status_i18n %></td>
           </tr>
         </tbody>
