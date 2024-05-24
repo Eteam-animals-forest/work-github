@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-12">
       <div class="cart-container" style="padding: 0 15px;">
-        <div class="d-flex justify-content-between my-4"> <!-- mb-4で間に隙間を追加 -->
+        <div class="d-flex justify-content-between my-4">
           <h3>ショッピングカート</h3>
           <%= link_to 'カートを空にする', cart_items_destroy_all_path, method: :delete, data: { confirm: '本当にカートを空にしますか？' }, class: 'btn btn-danger' %>
         </div>
@@ -40,7 +40,9 @@
                       </div>
                     <% end %>
                   </td>
-                  <td class="text-center" style="vertical-align: middle;"><%= number_to_currency(cart_item.subtotal, unit: "¥", precision: 0, format: "%u%n") %></td>
+                  <td class="text-center" style="vertical-align: middle;">
+                    <%= number_to_currency(cart_item.subtotal, unit: "¥", format: "%u%n", precision: 0) %>
+                  </td>
                   <td class="text-center" style="vertical-align: middle;">
                     <%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-danger btn-sm" %>
                   </td>
@@ -69,4 +71,3 @@
     </div>
   </div>
 </div>
-
