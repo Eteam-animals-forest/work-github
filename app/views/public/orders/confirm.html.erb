@@ -23,11 +23,11 @@
                           <%= image_tag cart_item.item.image, size: "100x80" %>
                           <strong><%= cart_item.item.name %></strong>
                         </td>
-                        <td><%= (cart_item.item.price*1.1).to_i %></td>
+                        <td><%= number_with_delimiter((cart_item.item.price*1.1).to_i) %></td>
                         <td><%= cart_item.amount %></td>
                         <td>
                             <% subtotal = ((cart_item.item.price*cart_item.amount)*1.1).to_i %>
-                            <%= subtotal %>
+                            <%= number_with_delimiter(subtotal) %>
                         </td>
                       </tr>
                     </tbody>
@@ -47,13 +47,13 @@
             </tr>
             <tr>
               <td class="table-secondary">商品合計</td>
-              <td class="col-5"><%= total.to_i %></td>
+              <td class="col-5"><%= number_with_delimiter(total.to_i) %></td>
             </tr>
             <tr>
               <td class="table-secondary">請求額</td>
               <td class="col-5">
                   <% @order.total_payment = @order.shipping_cost + total.to_i %>
-                  <%= @order.total_payment %>
+                  <%= number_with_delimiter(@order.total_payment) %>
               </td>
             </tr>
           </table>
