@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <h3 class="my-3 text-center">管理者ログイン</h3>
+    </div>
+  </div>
+     <%= form_with model:resource, url: admin_session_path do |f| %>
+     <%= alert %>
+      <div class="row">
+        <div class="col-md-8 offset-md-1">
+         <div>
+          <table class="table table-borderless">
+            <tr class="py-3">
+              <td><%= f.label :email, "メールアドレス" %></td>
+              <td><%= f.email_field :email, autofocus: true,size:"50%", autocomplete: "email", placeholder: "sample@example.com" %></td>
+             </tr>
+             <tr class="py-3">
+              <td><%= f.label :password, "パスワード" %></td>
+              <td><%= f.password_field :password,size:"50%", autocomplete: "current-password" %></td>
+             </tr>
+              <th></th>
+              <td><%= f.submit "ログイン", class: "btn btn-primary" %></td>
+           </table>
+           <%= render "admin/shared/links" %>
+          </div>
+         </div>
+        </div>
+      <% end %>
+
+</div>

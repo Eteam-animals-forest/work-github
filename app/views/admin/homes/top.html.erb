@@ -1,0 +1,32 @@
+<div class='container'>
+  <div class = "row">
+    <h4 class = 'col-12 pt-3'>注文履歴一覧</h4>
+    <table class="col-12 table">
+      <thead>
+        <tr style="background-color: #f7e19a;">
+          <th class="col-3 px-3">購入日時</th>
+          <th class="col-3 px-3">購入者</th>
+          <th class="col-3 px-3">注文個数</th>
+          <th class="col-3 px-3">注文ステータス</th>
+        </tr>
+      </thead>
+      <% @orders.each do |t| %>
+        <tbody>
+          <tr>
+            <td class="px-3">
+              <%= link_to admin_order_path(t.id), class:"text-dark" do %>
+                <%= t.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+              <% end %>
+            </td>
+            <td class="px-3"><%= t.customer.full_name %></td>
+            <td class="px-3"><%= t.order_details.group(:order_id).sum(:amount).values.first %></td>
+            <td class="px-3"><%= t.status_i18n %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <%= paginate @orders %>
+  </div> 
+</div>

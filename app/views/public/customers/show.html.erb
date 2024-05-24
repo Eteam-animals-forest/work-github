@@ -1,0 +1,48 @@
+<div class='container'>
+  <div class = "row">
+    <div class = 'col-12 py-4'>
+      <h4 class="offset-1">マイページ</h4>
+
+      <div class ="d-flex my-3">
+        <h4 class="font-weight-bold col-2 align-items-end">登録情報</h4>
+        <%= link_to "編集する", customers_information_edit_path(current_customer), class: "btn btn btn-success btn-sm col-1" %>
+      </div>
+
+      <table class="table-bordered">
+        <tr>
+          <td class="table-secondary text-left col-3 py-1">氏名</td>
+          <td class="col-6"><%= current_customer.last_name %>　<%= current_customer.first_name %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary text-left col-3 py-1">カナ</td>
+          <td class="col-6"><%= current_customer.last_name_kana %>　<%= current_customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary text-left col-3 py-1">郵便番号</td>
+          <td class="col-6"><%= current_customer.postal_code %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary text-left col-3 py-1">住所</td>
+          <td class="col-6"><%= current_customer.address %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary text-left col-3 py-1">電話番号</td>
+          <td class="col-6"><%= current_customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <td class="table-secondary text-left col-3 py-1">メールアドレス</td>
+          <td class="col-6"><%= current_customer.email %></td>
+        </tr>
+      </table>
+
+      <div class ="d-flex my-3">
+        <h4 class="font-weight-bold col-2 align-items-end">配送先</h4>
+        <%= link_to "一覧を見る", addresses_path(current_customer), class: "btn btn btn-primary btn-sm" %>
+      </div>
+      <div class ="d-flex my-3">
+        <h4 class="font-weight-bold col-2 align-items-end">注文履歴</h4>
+        <%= link_to "一覧を見る", orders_path(current_customer), class: "btn btn btn-primary btn-sm" %>
+      </div>
+    </div>
+  </div>
+</div>

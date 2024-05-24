@@ -1,0 +1,74 @@
+<div class="container p-3">
+    <div class="row">
+        <h3>注文履歴詳細</h3>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <h4>注文情報</h4>
+          <table class="table table-bordered">
+            <tr>
+              <td class="table-secondary">注文日</td>
+              <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <td class="table-secondary">配送先</td>
+              <td>〒<%= @order.postal_code + "　" + @order.address + "　" + @order.name %></td>
+            </tr>
+            <tr>
+              <td class="table-secondary">支払い方法</td>
+              <td><%= @order.payment_method_i18n %></td>
+            </tr>
+            <tr>
+              <td class="table-secondary">ステータス</td>
+              <td><%= @order.status_i18n %></td>
+            </tr>
+          </table>
+      </div>
+
+      <div class="col-md-4">
+        <h4>請求情報</h4>
+          <table class="table table-bordered">
+            <tr>
+              <td class="table-secondary">商品合計</td>
+              <td><% @order_details.each do |order_detail| %>
+                    <%= number_with_delimiter(order_detail.amount * order_detail.price) %>
+                  <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-secondary">配送料</td>
+              <td><%= @order.shipping_cost %></td>
+            </tr>
+            <tr>
+              <td class="table-secondary">ご請求額</td>
+              <td><%= number_with_delimiter(@order.total_payment) %></td>
+            </tr>
+          </table>
+      </div>
+    </div>
+
+      <div class="row">
+        <h4>注文内容</h4>
+          <table class="table table-bordered">
+              <thead class="table-secondary">
+                <tr>
+                  <th>商品</th>
+                  <th>単価(税込)</th>
+                  <th>個数</th>
+                  <th>小計</th>
+                </tr>
+              </thead>
+            <% @order_details.each do |order_detail| %>
+              <tbody>
+                <tr>
+                  <td><%= order_detail.item.name %></td>
+                  <td><%= number_with_delimiter(order_detail.price) %></td>
+                  <td><%= order_detail.amount %></td>
+                  <td><%= number_with_delimiter(order_detail.amount * order_detail.price) %></td>
+                </tr>
+              </tbody>
+            <% end %>
+          </table>
+      </div>
+</div>
