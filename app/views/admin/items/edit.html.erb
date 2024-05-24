@@ -6,8 +6,8 @@
     </div>
   </div>
   
-  <div class="row justify-content-center">
-    <div class="col-sm-10 px-sm-0 d-flex justify-content-center">
+  <div class="row">
+    <div class="col-sm-6 px-sm-0 offset-3">
       <%= form_with model: @item, url: admin_item_path(@item), local: true, method: :patch do |f| %>
         <table class="table table-borderless table-sm mx-auto">
           
@@ -28,24 +28,26 @@
           
           <tr>
             <th><%= f.label :ジャンル %></th>
-            <td><%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "ジャンルを選択してください" %></td>
+            <td><%= f.collection_select :genre_id, Genre.all, :id, :name, { prompt: "ジャンルを選択してください" }, { class: "form-control" } %></td>
           </tr>
           
           <tr>
             <th><%= f.label :税抜価格 %></th>
-            <td><%= f.text_field :price, placeholder:"1000", :size => "35" %>円</td>
+            <td><%= f.text_field :price, placeholder:"1000", :size => "50" %>円</td>
           </tr>
           
           <tr>
             <th><%= f.label :is_active, "販売ステータス" %></th>
             <td>
-              <div class="form-check form-check-inline">
-                <%= f.radio_button :is_active, true, class: "form-check-input" %>
-                <%= f.label :is_active, "販売中", class: "form-check-label" %>
-              </div>
-              <div class="form-check form-check-inline">
-                <%= f.radio_button :is_active, false, class: "form-check-input" %>
-                <%= f.label :is_active, "販売停止中", class: "form-check-label" %>
+              <div class="d-flex justify-content-center">
+                <div class="form-check form-check-inline mr-5">
+                  <%= f.radio_button :is_active, true, class: "form-check-input" %>
+                  <%= f.label :is_active, "販売中", class: "form-check-label" %>
+                </div>
+                <div class="form-check form-check-inline">
+                  <%= f.radio_button :is_active, false, class: "form-check-input" %>
+                  <%= f.label :is_active, "販売停止中", class: "form-check-label" %>
+                </div>
               </div>
             </td>
           </tr>
