@@ -31,9 +31,13 @@
           <table class="table table-bordered">
             <tr>
               <td class="table-secondary">商品合計</td>
-              <td><% @order_details.each do |order_detail| %>
-                    <%= number_with_delimiter(order_detail.amount * order_detail.price) %>
-                  <% end %>
+              <td>
+                <% total = 0 %>
+                <% @order_details.each do |order_detail| %>
+                  <% subtotal = order_detail.amount * order_detail.price %>
+                  <% total += subtotal %>
+                <% end %>
+                <%= number_with_delimiter(total) %>
               </td>
             </tr>
             <tr>
