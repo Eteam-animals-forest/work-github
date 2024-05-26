@@ -1,24 +1,39 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Nagano Cake ECサイト
 
-Things you may want to cover:
+## 概要
 
-* Ruby version
+Nagano Cakeは、お客様がオンラインでケーキを購入できるECサイトです。本プロジェクトは、顧客側(public)と管理者側(admin)の両方のインターフェースを提供しています。Ruby on Railsを使用して構築されています。
 
-* System dependencies
+## 機能
 
-* Configuration
+### 顧客側 (public)
 
-* Database creation
+-   会員登録、ログイン、ログアウト、退会
+-   商品の閲覧、カートに追加、購入
+-   注文履歴の閲覧
+-   配送先の登録、編集
 
-* Database initialization
+### 管理者側 (admin)
 
-* How to run the test suite
+-   商品の追加、編集、閲覧、販売停止処理
+-   会員情報の閲覧、編集、退会処理
+-   注文履歴の閲覧、注文ステータスの更新
+-   商品の製作ステータスの更新
 
-* Services (job queues, cache servers, search engines, etc.)
+## 開発環境
 
-* Deployment instructions
+-   開発環境：AWS Cloud9
+-   使用技術：Ruby on Rails
 
-* ...
+
+
+
+## 使用gem
+
+-   `devise`: ユーザー認証
+-   `bootstrap`: フロントエンドフレームワーク
+-   `kaminari`: ページネーション
+-   `enum_help`: enumの日本語化
+-   `active_storage`: ファイルアップロード
+
